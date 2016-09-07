@@ -15,11 +15,11 @@ void draw() {
 
 	for (int x = 10; x < width-10; x = x + 60) {
 		for (int y = 10; y < height/2; y = y+ 60) {
-			Die d1 = new Die(x,y);
-			d1.roll();
-			d1.show();
-			insTotal += d1.value;
-			netTotal += d1.value;
+			Die d6 = new Die(x,y);
+			d6.roll();
+			d6.show();
+			insTotal += d6.value;
+			netTotal += d6.value;
 		}
 	}
 
@@ -27,7 +27,7 @@ void draw() {
 
 	textSize(25);
 	text("Current Total: " + insTotal, 10, 460);
-	text("Average Total: " + avgTotal, 10, 500);
+	text("Average Total: " + (int)avgTotal, 10, 500);
 	text("Net Total: " + netTotal, 10, 540);
 	text("Rolls: " + numRolls, 10, 750);
 	text("1's Rolled: " + total1 + " - " + round(((double)total1/(double)numRolled)*100,2) + "%", 400, 460);
