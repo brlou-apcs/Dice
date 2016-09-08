@@ -19,7 +19,7 @@ void setup() {
 
 void draw() {
 
-	background(238,130,238); // Background color
+	background(0); // Background color
 
 	insTotal = 0; // Resets current total
 
@@ -36,17 +36,42 @@ void draw() {
 	avgTotal = netTotal/numRolls; // Average total is net total divided by number of rolls
 
 	// Display all text
-	textSize(25);
-	text("Current Total: " + insTotal, 10, 460);
-	text("Average Total: " + (int)avgTotal, 10, 500);
-	text("Net Total: " + netTotal, 10, 540);
+	textSize(15);
+	fill(255);
+
+	text("Current Total: " + insTotal, 10, 450);
+	text("Average Total: " + (int)avgTotal, 10, 465);
+	text("Net Total: " + netTotal, 10, 480);
+	text("1's Rolled: " + total1 + " - " + round(((double)total1/(double)numRolled)*100,2) + "%", 10, 530);
+	text("2's Rolled: " + total2 + " - " + round(((double)total2/(double)numRolled)*100,2) + "%", 10, 545);
+	text("3's Rolled: " + total3 + " - " + round(((double)total3/(double)numRolled)*100,2) + "%", 10, 560);
+	text("4's Rolled: " + total4 + " - " + round(((double)total4/(double)numRolled)*100,2) + "%", 10, 575);
+	text("5's Rolled: " + total5 + " - " + round(((double)total5/(double)numRolled)*100,2) + "%", 10, 590);
+	text("6's Rolled: " + total6 + " - " + round(((double)total6/(double)numRolled)*100,2) + "%", 10, 605);
 	text("Rolls: " + numRolls, 10, 750);
-	text("1's Rolled: " + total1 + " - " + round(((double)total1/(double)numRolled)*100,2) + "%", 400, 460);
-	text("2's Rolled: " + total2 + " - " + round(((double)total2/(double)numRolled)*100,2) + "%", 400, 485);
-	text("3's Rolled: " + total3 + " - " + round(((double)total3/(double)numRolled)*100,2) + "%", 400, 510);
-	text("4's Rolled: " + total4 + " - " + round(((double)total4/(double)numRolled)*100,2) + "%", 400, 535);
-	text("5's Rolled: " + total5 + " - " + round(((double)total5/(double)numRolled)*100,2) + "%", 400, 560);
-	text("6's Rolled: " + total6 + " - " + round(((double)total6/(double)numRolled)*100,2) + "%", 400, 585);
+
+	// Bar graph
+	stroke(255);
+	strokeWeight(3);
+	line(250,450,250,700);
+	line(250,700,750,700);
+
+	text("1", 305, 720);
+	text("2", 355, 720);
+	text("3", 405, 720);
+	text("4", 455, 720);
+	text("5", 505, 720);
+	text("6", 555, 720);
+	text("%", 235, 575);
+
+	rect(300, 700 - (float)round(((double)total1/(double)numRolled)*1000,4), 20, (float)round(((double)total1/(double)numRolled)*1000,3));
+	rect(350, 700 - (float)round(((double)total2/(double)numRolled)*1000,4), 20, (float)round(((double)total2/(double)numRolled)*1000,3));
+	rect(400, 700 - (float)round(((double)total3/(double)numRolled)*1000,4), 20, (float)round(((double)total3/(double)numRolled)*1000,3));
+	rect(450, 700 - (float)round(((double)total4/(double)numRolled)*1000,4), 20, (float)round(((double)total4/(double)numRolled)*1000,3));
+	rect(500, 700 - (float)round(((double)total5/(double)numRolled)*1000,4), 20, (float)round(((double)total5/(double)numRolled)*1000,3));
+	rect(550, 700 - (float)round(((double)total6/(double)numRolled)*1000,4), 20, (float)round(((double)total6/(double)numRolled)*1000,3));
+
+
 }
 
 // When mouse is pressed
@@ -82,6 +107,7 @@ class Die {
 		rect(myX, myY, 50, 50);
 
 		// Draws the dots
+		noStroke();
 		fill(0);
 		switch(value) { // Switch case for each random value 1 - 6
 			case 1:
@@ -115,6 +141,7 @@ class Die {
 				total5++;
 				break;
 			case 6:
+				fill(255,0,0);
 				ellipse(myX+12.5,myY+15,10,10);
 				ellipse(myX+12.5,myY+35,10,10);
 				ellipse(myX+25,myY+15,10,10);
